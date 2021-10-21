@@ -1,6 +1,7 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
-using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class GameplayLogic : MonoBehaviour
 {
@@ -9,11 +10,16 @@ public class GameplayLogic : MonoBehaviour
 
     private Coroutine scoreUpdateCoroutine;
 
+    [SerializeField]
+    private GameObject gameCompleteCanvas;
+
     // Start is called before the first frame update
     void Start()
     {
         Reset();
-        scoreUpdateCoroutine = StartCoroutine(DoScoreUpdate(0.5f));
+        Time.timeScale = 1;
+        gameCompleteCanvas.SetActive(false);
+        scoreUpdateCoroutine = StartCoroutine(DoScoreUpdate(0.125f));
     }
 
     // Update is called once per frame
@@ -35,6 +41,16 @@ public class GameplayLogic : MonoBehaviour
         {
             scoreText.text = string.Format("{0}/{1}", gamePlayState.nuggetTally, gamePlayState.totalNuggets);
             yield return new WaitForSeconds(interval);
+            if (gamePlayState.nuggetTally == gamePlayState.totalNuggets)
+            {
+                Time.timeScale = 0;
+                gameCompleteCanvas.SetActive(true);
+            }
         }
+    }
+
+    public void RestartLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
