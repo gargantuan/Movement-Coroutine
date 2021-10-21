@@ -6,11 +6,6 @@ public class Nugget : MonoBehaviour
     [SerializeField] GamePlayState gamePlayState;
     private Transform carrierTransform;
     [SerializeField] private Vector3 carrierOffset = new Vector3(0, 0, 2.5f);
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
 
     // Update is called once per frame
     void LateUpdate()
@@ -23,10 +18,21 @@ public class Nugget : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (!gamePlayState.isCarrying)
+        if (!gamePlayState.isCarryingNugget)
         {
             carrierTransform = other.transform;
-            gamePlayState.isCarrying = true;
+            gamePlayState.isCarryingNugget = true;
         }
     }
+
+    public void DoCollected()
+    {
+        if (this.carrierTransform)
+        {
+            gamePlayState.SaveNugget();
+            Destroy(this.gameObject);
+        }
+    }
+
+
 }
