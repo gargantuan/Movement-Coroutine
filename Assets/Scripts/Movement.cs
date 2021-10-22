@@ -18,11 +18,18 @@ public class Movement : MonoBehaviour
     {
         if (!isMoving && direction != Vector3.zero)
         {
-            movementCoroutine = StartCoroutine(SmoothLerp(stepTime));
+            if (CanMoveToNextTile())
+            {
+                movementCoroutine = StartCoroutine(DoMovement(stepTime));
+            }
+            else
+            {
+                direction = Vector3.zero;
+            }
         }
     }
 
-    private IEnumerator SmoothLerp(float time)
+    private IEnumerator DoMovement(float time)
     {
         isMoving = true;
         Vector3 startPos = transform.position;
@@ -36,6 +43,25 @@ public class Movement : MonoBehaviour
         }
         transform.position = endPos;
         isMoving = false;
+    }
+
+    private bool CanMoveToNextTile()
+    {
+        float rayDepth = 3;
+        RaycastHit hit;
+        Vector3 rayPoint = transform.position + direction + Vector3.up * 2;
+        if (Physics.Raycast(rayPoint, Vector3.down, out hit, rayDepth))
+        {
+            return hit.transform.gameObject.layer == LayerMask.NameToLayer("Obstacle") ? false : true;
+        }
+        return false;
+    }
+
+    void OnDrawGizmos()
+    {
+        Vector3 rayPoint = transform.position + direction + Vector3.up * 2;
+        Gizmos.DrawSphere(rayPoint, 0.25f);
+        Gizmos.DrawLine(rayPoint, rayPoint + Vector3.down * 3);
     }
 
     public void SetDirection(Vector3 _direction)
