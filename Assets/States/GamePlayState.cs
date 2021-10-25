@@ -4,6 +4,7 @@ using UnityEngine;
 public class GamePlayState : ScriptableObject
 {
     public float gameTime;
+    public int lives = 3;
 
     public float totalNuggets = 0;
     public float nuggetTally = 0;
@@ -13,6 +14,7 @@ public class GamePlayState : ScriptableObject
         gameTime = 0;
         nuggetTally = 0;
         isCarryingNugget = false;
+        lives = 3;
     }
 
     public void SaveNugget()

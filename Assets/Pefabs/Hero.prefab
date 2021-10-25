@@ -107,11 +107,13 @@ GameObject:
   - component: {fileID: 2874487177957502917}
   - component: {fileID: 2874487177957502919}
   - component: {fileID: 2874487177957502936}
-  - component: {fileID: 2874487177957502938}
   - component: {fileID: 2874487177957502937}
+  - component: {fileID: 7464302303803700501}
+  - component: {fileID: 8042297270917331398}
+  - component: {fileID: 2438075292025891776}
   m_Layer: 0
   m_Name: Hero
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -170,20 +172,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   step: 0.125
---- !u!136 &2874487177957502938
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2874487177957502916}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.75
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0.99, z: 0}
 --- !u!54 &2874487177957502937
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -200,6 +188,85 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &7464302303803700501
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2874487177957502916}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 2, z: 1}
+  m_Center: {x: 0, y: 1, z: 0}
+--- !u!114 &8042297270917331398
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2874487177957502916}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7902eda2cc6040678ca8ec331f650dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyCollisionEvent: {fileID: 11400000, guid: f1fa1e1c6cc7e452fa3e6bc41a32b272, type: 2}
+  homeplateTransform: {fileID: 0}
+--- !u!114 &2438075292025891776
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2874487177957502916}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 418e5482f17de479ca1b03472e3d7ed2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: f1fa1e1c6cc7e452fa3e6bc41a32b272, type: 2}
+  unityEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2874487177957502936}
+        m_TargetAssemblyTypeName: Rotation, Assembly-CSharp
+        m_MethodName: HandleEnemyCollision
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2874487177957502917}
+        m_TargetAssemblyTypeName: Movement, Assembly-CSharp
+        m_MethodName: HandleEnemyCollision
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2874487177957502919}
+        m_TargetAssemblyTypeName: MovementControls, Assembly-CSharp
+        m_MethodName: HandleEnemyCollision
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2874487178182321860
 GameObject:
   m_ObjectHideFlags: 0

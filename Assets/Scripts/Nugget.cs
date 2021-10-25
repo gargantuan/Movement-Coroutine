@@ -5,7 +5,7 @@ public class Nugget : MonoBehaviour
 
     [SerializeField] GamePlayState gamePlayState;
     private Transform carrierTransform;
-    [SerializeField] private Vector3 carrierOffset = new Vector3(0, 0, 2.5f);
+    private Vector3 carrierOffset = new Vector3(0, 2.5f, 0);
 
     // Update is called once per frame
     void LateUpdate()
@@ -18,7 +18,7 @@ public class Nugget : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (!gamePlayState.isCarryingNugget)
+        if (other.gameObject.tag == "Player" && !gamePlayState.isCarryingNugget)
         {
             carrierTransform = other.transform;
             gamePlayState.isCarryingNugget = true;
@@ -34,5 +34,11 @@ public class Nugget : MonoBehaviour
         }
     }
 
+    public void Drop()
+    {
+        this.carrierTransform = null;
+        transform.position = new Vector3(transform.position.x, 0, transform.position.z);
+        gamePlayState.isCarryingNugget = false;
+    }
 
 }

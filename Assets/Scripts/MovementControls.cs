@@ -60,4 +60,10 @@ public class MovementControls : MonoBehaviour
         }
 
     }
+
+    public void HandleEnemyCollision()
+    {
+        movement.SetDirection(Vector3.zero);
+        rotation.SetRotation(Vector3.zero);
+    }
 }

@@ -20,7 +20,6 @@ public class Rotation : MonoBehaviour
 
     private IEnumerator DoRotation(float timeStep)
     {
-        Debug.Log(string.Format("DoRotation called {0}", targetRotation));
         isRotating = true;
         Quaternion startRotation = transform.rotation;
         Quaternion endRotation = targetRotation;
@@ -37,7 +36,14 @@ public class Rotation : MonoBehaviour
 
     public void SetRotation(Vector3 rotationVector)
     {
-        Debug.Log(string.Format("SetRotation called {0}", rotationVector));
         targetRotation = Quaternion.Euler(rotationVector);
+    }
+
+    public void HandleEnemyCollision()
+    {
+        if (rotationCoroutine != null)
+        {
+            StopCoroutine(rotationCoroutine);
+        }
     }
 }

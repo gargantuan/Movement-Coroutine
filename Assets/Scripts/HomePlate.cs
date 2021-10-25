@@ -7,6 +7,7 @@ public class HomePlate : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        reachedEvent.Invoke();
+        if (other.gameObject.tag == "Player")
+            reachedEvent.Invoke();
     }
 }

@@ -68,4 +68,13 @@ public class Movement : MonoBehaviour
     {
         direction = _direction;
     }
+
+    public void HandleEnemyCollision()
+    {
+        isMoving = false;
+        if (movementCoroutine != null)
+        {
+            StopCoroutine(movementCoroutine);
+        }
+    }
 }
