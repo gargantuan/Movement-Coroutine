@@ -5,6 +5,7 @@ public class SwitchStateMachine : MonoBehaviour, IStateMachine
     private IState currentState;
     [SerializeField] public GameObject button;
     [SerializeField] public float timer = 0;
+    [SerializeField] public DoorStateMachine[] doors;
 
     public StateSwitchOff stateSwitchOff = new StateSwitchOff();
     public StateSwitchOn stateSwitchOn = new StateSwitchOn();

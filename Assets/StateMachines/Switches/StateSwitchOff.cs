@@ -4,7 +4,12 @@ public class StateSwitchOff : IState
 {
     public void EnterState(IStateMachine stateMachine)
     {
-        (stateMachine as SwitchStateMachine).button.GetComponent<MeshRenderer>().material.color = Color.red;
+        SwitchStateMachine sm = stateMachine as SwitchStateMachine;
+        sm.button.GetComponent<MeshRenderer>().material.color = Color.red;
+        foreach (DoorStateMachine dm in sm.doors)
+        {
+            dm.SwitchState(dm.doorClosingState);
+        }
     }
 
     public void ExitState(IStateMachine stateMachine)

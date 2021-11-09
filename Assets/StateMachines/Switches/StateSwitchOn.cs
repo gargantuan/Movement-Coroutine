@@ -10,6 +10,11 @@ public class StateSwitchOn : IState
         {
             stateMachine.SwitchState(sm.stateSwitchTimer);
         }
+
+        foreach (DoorStateMachine dm in sm.doors)
+        {
+            dm.SwitchState(dm.doorOpeningState);
+        }
     }
 
     public void ExitState(IStateMachine stateMachine)

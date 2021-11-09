@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class DoorStateMachine : MonoBehaviour, IStateMachine
 {
-
+    [SerializeField] public GameObject door;
     private IState currentState;
     public DoorOpenState doorOpenState = new DoorOpenState();
     public DoorOpeningState doorOpeningState = new DoorOpeningState();

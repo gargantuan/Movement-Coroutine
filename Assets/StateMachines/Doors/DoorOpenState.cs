@@ -4,7 +4,8 @@ public class DoorOpenState : IState
 {
     public void EnterState(IStateMachine stateMachine)
     {
-
+        DoorStateMachine dm = stateMachine as DoorStateMachine;
+        dm.gameObject.layer = LayerMask.NameToLayer("Default");
     }
 
     public void ExitState(IStateMachine stateMachine)
